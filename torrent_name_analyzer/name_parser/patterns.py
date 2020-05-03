@@ -71,16 +71,3 @@ types = {
     'internal': 'boolean',
     'readnfo': 'boolean'
 }
-
-exceptions = [
-    {
-        'parsed_title': '',
-        'incorrect_parse': ('year', 1983),
-        'actual_title': '1983'
-     },
-    {
-        'parsed_title': 'Marvel\'s Agents of S H I E L D',
-        'incorrect_parse': ('title', 'Marvel\'s Agents of S H I E L D'),
-        'actual_title': 'Marvel\'s Agents of S.H.I.E.L.D.'
-    }
-]
