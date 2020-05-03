@@ -5,7 +5,7 @@ import json
 import os
 import unittest
 
-import PTN
+from torrent_name_analyzer.name_parser import PTN
 
 
 class ParseTest(unittest.TestCase):

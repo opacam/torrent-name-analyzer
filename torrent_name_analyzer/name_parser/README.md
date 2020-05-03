@@ -2,12 +2,14 @@
 
 > Extract media information from torrent-like filename
 
-![Python versions](https://img.shields.io/badge/Python-2.7%2C%203.3-brightgreen.svg?style=flat-square)
+![Python versions](https://img.shields.io/badge/Python-3.6+-brightgreen.svg?style=flat-square)
 
-Originally based off of [this JavaScript
-library](https://github.com/jzjzjzj/parse-torrent-name).
+A Python 3 only rework based on
+[parse-torrent-name](https://github.com/platelminto/parse-torrent-name),
+which is a [fork of Divij Bindlish work](https://github.com/divijbindlish/parse-torrent-name)
+Originally based off of [this JavaScript library](https://github.com/jzjzjzj/parse-torrent-name).
 
-Extract all possible media information from a filename. Multiple regex 
+Extract all possible media information from a filename. Multiple regex
 rules are applied on the filename, each of which extracts appropriate
 information. If a rule matches, the corresponding part
 is removed from the filename. Finally, what remains is taken as the
@@ -217,3 +219,5 @@ Submit a PR, including tests (if applicable) for what you've added. Please provi
 MIT © 2015-2017 [Divij Bindlish](http://divijbindlish.in)
 
 MIT © 2020 [Giorgio Momigliano](https://github.com/platelminto)
+
+MIT © 2020 [Pol Canelles](https://github.com/opacam)
