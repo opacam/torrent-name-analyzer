@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "torrent-name-analyzer"
+version = "2020.05.03"
+description = "REST api to extract all possible media information from a torrent filename."
+authors = ["opacam <canellestudi@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+flask = "^1.1.2"
+connexion = {extras = ["swagger-ui"], version = "^2.7.0"}
+sqlalchemy = "^1.3.16"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

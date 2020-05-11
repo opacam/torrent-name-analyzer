@@ -1,0 +1,164 @@
+openapi: 3.0.0
+info:
+  title: torrent-name-analyzer
+  description: REST api to extract all possible media information from a torrent filename.
+  version: '1.0'
+
+servers:
+  - url: /v1
+    description: API V1 server
+
+paths:
+  /torrents:
+    get:
+      summary: Returns a list of all parsed torrent file names.
+      description: Optional extended description in CommonMark or HTML.
+      operationId: torrent_name_analyzer.app.get_torrents
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 25
+      responses:
+        '200':
+          description: A JSON array of scraped video files
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /torrents/{torrent_id}:
+    get:
+      summary: Returns a parsed torrent file name by ID.
+      operationId: torrent_name_analyzer.app.get_torrent
+      parameters:
+        - $ref: '#/components/parameters/torrent_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Torrent'
+        '400':
+          description: The specified torrent ID is invalid (not a number).
+        '404':
+          description: A torrent with the specified ID was not found.
+    delete:
+      tags:
+      - Torrents
+      summary: Remove a parsed torrent filename from the database.
+      operationId: torrent_name_analyzer.app.remove_torrent
+      parameters:
+        - $ref: '#/components/parameters/torrent_id'
+      responses:
+        '202':
+          description: Successfully deleted parsed torrent filename
+        '204':
+          description: OK removed parsed torrent filename
+        '404':
+          description: Torrent filename doesn't exist
+  /torrents/{torrent_name}:
+    get:
+      summary: Return a parsed torrent filename.
+      operationId: torrent_name_analyzer.app.get_torrent_by_name
+      parameters:
+        - $ref: '#/components/parameters/torrent_name'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: The specified filename is invalid (not a string).
+        '404':
+          description: A torrent with the specified filename was not found.
+    put:
+        tags:
+            - Torrents
+        operationId: torrent_name_analyzer.app.put_torrent
+        summary: Create or update a torrent parsed filename
+        parameters:
+            -   $ref: '#/components/parameters/torrent_name'
+        responses:
+            '200':
+                description: Torrent parse updated
+            '201':
+                description: New torrent parse created
+
+components:
+  parameters:
+    torrent_id:
+      name: torrent_id
+      description: Torrent's Unique Identifier'
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+    torrent_name:
+      name: torrent_name
+      description: Torrent file name
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Torrent:
+      properties:
+        torrent_id:
+          type: integer
+        torrent_name:
+          type: string
+        title:
+          type: string
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
+        season:
+          type: string
+        episode:
+          type: string
+        episodeName:
+          type: string
+        resolution:
+          type: string
+        audio:
+          type: string
+        bitDepth:
+          type: string
+        codec:
+          type: string
+        quality:
+          type: string
+        encoder:
+          type: string
+        group:
+          type: string
+        website:
+          type: string
+        language:
+          type: string
+        region:
+          type: string
+        subtitles:
+          type: string
+        container:
+          type: string
+        size:
+          type: string
+        rip_properties:
+          type: string
+        excess:
+          type: string
+        timestamp:
+          type: string
+      required:
+        - torrent_id
+        - torrent_name
+        - title
+        - timestamp
