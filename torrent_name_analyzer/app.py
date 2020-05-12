@@ -9,6 +9,7 @@ import datetime
 import connexion
 import logging
 
+from flask import render_template
 from os.path import abspath, dirname, join
 
 from torrent_name_analyzer import orm
@@ -142,6 +143,16 @@ application = app.app
 @application.teardown_appcontext
 def shutdown_session(exception=None):
     db_session.remove()
+
+
+# Create a URL route in our application for "/"
+@app.route('/')
+def home():
+    """
+    This function just responds to the browser ULR `localhost:5000/`
+    :return:        the rendered template 'home.html'
+    """
+    return render_template('home.html')
 
 
 if __name__ == "__main__":
