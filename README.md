@@ -73,7 +73,46 @@ And if you want to run `pytest` with coverage:
 poetry run pytest --cov . -n 2
 ```
 
+## Docker
+
+This project can be used via docker, the following sections describes
+the build/run instructions.
+
+### Build image
+
+You can build the docker image with the command:
+
+```
+docker build -t torrent-name-analyzer:latest .
+```
+
 ---
+**TIP**
+
+To update requirements.txt file you can use:
+
+```
+poetry export -f requirements.txt -o requirements.txt
+```
+
+---
+
+## Run image
+
+To run the image, use command:
+
+```
+docker run -it --rm -p 5001:5000 torrent-name-analyzer
+```
+
+---
+**TIP**
+
+You could map to different host port, by default we use `5001` and the
+project runs on `5000`
+
+---
+
 
 ## Deployment with heroku
 
