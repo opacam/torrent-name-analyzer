@@ -50,8 +50,6 @@ def get_torrent(torrent_id):
         .filter(orm.Torrent.torrent_id == torrent_id)
         .one_or_none()
     )
-    print(torrent_id)
-    print(torrent)
     return torrent.dump() if torrent is not None else ("Not found", 404)
 
 
