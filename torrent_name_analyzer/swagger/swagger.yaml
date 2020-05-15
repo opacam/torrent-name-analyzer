@@ -74,18 +74,40 @@ paths:
           description: The specified filename is invalid (not a string).
         '404':
           description: A torrent with the specified filename was not found.
+    post:
+      tags:
+        - Torrents
+      operationId: torrent_name_analyzer.app.post_torrent
+      summary: Create a parsed torrent filename.
+      parameters:
+        -   $ref: '#/components/parameters/torrent_name'
+      responses:
+        '200':
+          description: New torrent filename parse created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Torrent'
+        '201':
+          description: Torrent already exists in database, please, use
+                       `PUT` method instead.
     put:
-        tags:
-            - Torrents
-        operationId: torrent_name_analyzer.app.put_torrent
-        summary: Create or update a torrent parsed filename
-        parameters:
-            -   $ref: '#/components/parameters/torrent_name'
-        responses:
-            '200':
-                description: Torrent parse updated
-            '201':
-                description: New torrent parse created
+      tags:
+        - Torrents
+      operationId: torrent_name_analyzer.app.put_torrent
+      summary: Update a parsed torrent filename
+      parameters:
+        -   $ref: '#/components/parameters/torrent_name'
+      responses:
+        '200':
+          description: Torrent filename parse updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Torrent'
+        '201':
+          description: Torrent doesnt exists in database, please, use
+                       `POST` method instead.
 
 components:
   parameters:

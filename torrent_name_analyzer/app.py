@@ -23,6 +23,16 @@ DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 5000
 DB_FILE = abspath(join(dirname(__file__), "torrent_name.db"))
 
+TORRENT_EXIST_IN_DB_MESSAGE = (
+    "Torrent `{torrent_name}` already exists in database, "
+    "please use `PUT` method to update it."
+)
+
+TORRENT_NOT_EXIST_IN_DB_MESSAGE = (
+    "Torrent `{torrent_name}` doesnt exists in database,"
+    "please use `POST` method to create it."
+)
+
 
 def get_timestamp():
     return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -44,30 +54,47 @@ def get_torrent(torrent_id):
     return torrent.dump() if torrent is not None else ("Not found", 404)
 
 
-def get_torrent_by_name(torrent_name):
-    torrent = (
+def _get_torrent_by_name(torrent_name):
+    """
+    Private method to get a Torrent (or None) from the database given a
+    torrent filename.
+    """
+    return (
         db_session.query(orm.Torrent)
         .filter(orm.Torrent.torrent_name == torrent_name)
         .one_or_none()
     )
+
+
+def get_torrent_by_name(torrent_name):
+    torrent = _get_torrent_by_name(torrent_name)
     return torrent.dump() if torrent is not None else ("Not found", 404)
 
 
-def put_torrent(torrent_name):
-    p = (
-        db_session.query(orm.Torrent)
-        .filter(orm.Torrent.torrent_name.like(torrent_name))
-        .one_or_none()
-    )
+def post_torrent(torrent_name):
+    torrent = _get_torrent_by_name(torrent_name)
+    if torrent is not None:
+        msg = TORRENT_EXIST_IN_DB_MESSAGE.format(torrent_name=torrent_name)
+        logging.warning(msg)
+        return msg, 201
+    logging.info(f"Creating torrent {torrent_name}...")
     parsed_torrent = get_parsed_data(torrent_name)
-    if p is not None:
-        logging.info(f"Updating torrent {torrent_name}..")
-        p.update(**parsed_torrent)
-    else:
-        logging.info(f"Creating torrent {torrent_name}..")
-        db_session.add(orm.Torrent(**parsed_torrent))
+    db_session.add(orm.Torrent(**parsed_torrent))
     db_session.commit()
-    return connexion.NoContent, (200 if p is not None else 201)
+    return parsed_torrent, 200
+
+
+def put_torrent(torrent_name):
+    torrent = _get_torrent_by_name(torrent_name)
+    if torrent is None:
+        msg = TORRENT_NOT_EXIST_IN_DB_MESSAGE.format(torrent_name=torrent_name)
+        logging.warning(msg)
+        return msg, 201
+    logging.info(f"Updating torrent {torrent_name}...")
+    parsed_torrent = get_parsed_data(torrent_name)
+    torrent.update(**parsed_torrent)
+    db_session.commit()
+    return parsed_torrent, 200
 
 
 def remove_torrent(torrent_id):
