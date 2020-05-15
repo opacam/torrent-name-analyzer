@@ -11,6 +11,8 @@ servers:
 paths:
   /torrents:
     get:
+      tags:
+        - Torrents
       summary: Returns a list of all parsed torrent file names.
       description: Optional extended description in CommonMark or HTML.
       operationId: torrent_name_analyzer.app.get_torrents
@@ -23,7 +25,7 @@ paths:
             default: 25
       responses:
         '200':
-          description: A JSON array of scraped video files
+          description: A JSON array of parsed torrent filenames.
           content:
             application/json:
               schema:
@@ -32,6 +34,8 @@ paths:
                   type: string
   /torrents/{torrent_id}:
     get:
+      tags:
+        - Torrents
       summary: Returns a parsed torrent file name by ID.
       operationId: torrent_name_analyzer.app.get_torrent
       parameters:
@@ -49,7 +53,7 @@ paths:
           description: A torrent with the specified ID was not found.
     delete:
       tags:
-      - Torrents
+        - Torrents
       summary: Remove a parsed torrent filename from the database.
       operationId: torrent_name_analyzer.app.remove_torrent
       parameters:
@@ -63,6 +67,8 @@ paths:
           description: Torrent filename doesn't exist
   /torrents/{torrent_name}:
     get:
+      tags:
+        - Torrents
       summary: Return a parsed torrent filename.
       operationId: torrent_name_analyzer.app.get_torrent_by_name
       parameters:
