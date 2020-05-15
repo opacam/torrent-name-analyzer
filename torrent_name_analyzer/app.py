@@ -10,7 +10,7 @@ import connexion
 import logging
 
 from flask import render_template
-from os.path import abspath, dirname, join
+from pathlib import Path
 
 from torrent_name_analyzer import orm
 from torrent_name_analyzer.name_parser import get_parsed_data
@@ -21,13 +21,14 @@ logging.basicConfig(level=logging.INFO)
 
 DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 5000
-DB_FILE = abspath(join(dirname(__file__), "torrent_name.db"))
+
+DB_DIRECTORY = Path(Path(__file__).parent, "db-data")
+DB_FILE = Path(DB_DIRECTORY, "torrents.db")
 
 TORRENT_EXIST_IN_DB_MESSAGE = (
     "Torrent `{torrent_name}` already exists in database, "
     "please use `PUT` method to update it."
 )
-
 TORRENT_NOT_EXIST_IN_DB_MESSAGE = (
     "Torrent `{torrent_name}` doesnt exists in database,"
     "please use `POST` method to create it."
@@ -114,10 +115,12 @@ def remove_torrent(torrent_id):
         return connexion.NoContent, 404
 
 
+# make sure that we have database directory
+DB_DIRECTORY.mkdir(parents=True, exist_ok=True)
 db_session = orm.init_db(f"sqlite:///{DB_FILE}")
+# initialize Flask app
 app = connexion.FlaskApp(__name__, specification_dir="swagger/")
 app.add_api("swagger.yaml")
-
 application = app.app
 
 
@@ -141,5 +144,5 @@ if __name__ == "__main__":
         host=DEFAULT_HOST,
         port=DEFAULT_PORT,
         use_reloader=True,
-        threaded=False if ":memory:" in DB_FILE else True,
+        threaded=False if ":memory:" in str(DB_FILE) else True,
     )
