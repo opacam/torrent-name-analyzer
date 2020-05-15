@@ -99,20 +99,19 @@ poetry export -f requirements.txt -o requirements.txt
 
 ## Run image
 
-To run the image, use command:
+To run the image without persistent database changes, use command:
 
 ```
-docker run -it --rm -p 5001:5000 torrent-name-analyzer
+docker run --rm torrent-name-analyzer
 ```
 
----
-**TIP**
+To run the image with persistent database changes, you can mount a
+volume inside docker image pointing to host's database folder with
+command:
 
-You could map to different host port, by default we use `5001` and the
-project runs on `5000`
-
----
-
+```
+docker run --rm -v <absolute-path-to-db-data>:/app/torrent_name_analyzer/db-data torrent-name-analyzer
+```
 
 ## Deployment with heroku
 
