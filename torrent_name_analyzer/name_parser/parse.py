@@ -215,7 +215,8 @@ class PTN(object):
                 match = match[0]
                 raw = match[0]
                 if match:
-                    self._part("encoder", match, raw, match[1])
+                    if match[1]:
+                        self._part("encoder", match, raw, match[1])
                     self.parts["group"] = group.replace(raw, "")
                     if not self.parts["group"].strip():
                         self.parts.pop("group")
