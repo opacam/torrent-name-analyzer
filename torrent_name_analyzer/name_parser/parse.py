@@ -128,14 +128,13 @@ class PTN(object):
             # Codec, quality and subtitles matches can interfere with group
             # matching, so we do this later as a special case.
             if key == "group":
-                if (
-                    re.search(self._get_pattern("codec"), clean, re.IGNORECASE)
-                    or re.search(
-                        self._get_pattern("quality"), clean, re.IGNORECASE
-                    )
-                    or re.search(
-                        self._get_pattern("subtitles"), clean, re.IGNORECASE
-                    )
+                if clean not in self.excess_raw:
+                    # clean should still be in self.excess_raw, if that is not
+                    # the case the match must be avoided since we already set
+                    # it for `codec` or `quality`
+                    continue
+                if re.search(
+                    self._get_pattern("subtitles"), clean, re.IGNORECASE,
                 ):
                     continue
 
