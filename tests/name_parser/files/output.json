@@ -1,6 +1,7 @@
 [
   {
     "codec": "x264",
+    "encoder": "ettv",
     "episode": 3,
     "group": "ASAP",
     "quality": "HDTV",
@@ -10,6 +11,7 @@
   },
   {
     "codec": "H264",
+    "group": "YIFY",
     "quality": "BrRip",
     "resolution": "1080p",
     "title": "Hercules",
@@ -17,12 +19,14 @@
   },
   {
     "codec": "XViD",
+    "group": "EVO",
     "quality": "HDRip",
     "title": "Dawn of the Planet of the Apes",
     "year": 2014
   },
   {
     "codec": "XviD",
+    "encoder": "eztv",
     "episode": 6,
     "quality": "HDTV",
     "season": 8,
@@ -48,6 +52,7 @@
   },
   {
     "codec": "XViD",
+    "encoder": "ETRG",
     "extended": true,
     "group": "juggs",
     "quality": "HDRip",
@@ -56,24 +61,28 @@
   },
   {
     "codec": "XviD",
+    "group": "MAX",
     "quality": "WEBDL DVDRip",
     "title": "Hercules",
     "year": 2014
   },
   {
     "codec": "x264",
+    "group": "={SPARROW}=",
     "quality": "PPV WEB-DL",
     "title": "WWE Hell in a Cell",
     "year": 2014
   },
   {
     "codec": "x264",
+    "encoder": "rartv",
     "group": "Ebi",
     "quality": "PPV.HDTV",
     "title": "UFC 179"
   },
   {
     "codec": "x264",
+    "encoder": "eztv",
     "episode": 5,
     "quality": "HDTV",
     "season": 2,
@@ -82,6 +91,7 @@
   {
     "audio": "DD5.1",
     "codec": "H264",
+    "group": "RARBG",
     "quality": "WEB-DL",
     "resolution": "1080p",
     "title": "X-Men Days of Future Past",
@@ -89,6 +99,7 @@
   },
   {
     "codec": "x264",
+    "group": "JYK",
     "quality": "HDCAM",
     "region": "R6",
     "resolution": "720p",
@@ -121,6 +132,7 @@
   {
     "audio": "DD5.1",
     "codec": "H.264",
+    "encoder": "rartv",
     "episode": 3,
     "group": "Cyphanix",
     "quality": "WEB-DL",
@@ -131,6 +143,7 @@
   {
     "audio": "LiNE",
     "codec": "XViD",
+    "group": "UNiQUE",
     "quality": "DVDRip",
     "region": "R5",
     "title": "Brave",
@@ -138,6 +151,8 @@
   },
   {
     "codec": "XViD",
+    "encoder": "ETRG",
+    "group": "juggs",
     "quality": "BRRip",
     "title": "Lets Be Cops",
     "year": 2014
@@ -150,6 +165,7 @@
   },
   {
     "codec": "x264",
+    "encoder": "eztv",
     "episode": 6,
     "quality": "HDTV",
     "season": 5,
@@ -158,6 +174,8 @@
   {
     "audio": "AC3",
     "codec": "XViD",
+    "encoder": "ETRG",
+    "group": "juggs",
     "hardcoded": true,
     "quality": "HDRip",
     "title": "Annabelle",
@@ -165,6 +183,8 @@
   },
   {
     "codec": "XViD",
+    "encoder": "ETRG",
+    "group": "juggs",
     "hardcoded": true,
     "quality": "HDRip",
     "title": "Lucy",
@@ -172,7 +192,9 @@
   },
   {
     "codec": "x264",
+    "encoder": "ettv",
     "episode": 4,
+    "group": "FUM",
     "quality": "HDTV",
     "season": 1,
     "title": "The Flash",
@@ -180,6 +202,7 @@
   },
   {
     "codec": "x264",
+    "encoder": "eztv",
     "episode": 5,
     "quality": "HDTV",
     "season": 18,
@@ -187,7 +210,9 @@
   },
   {
     "codec": "x264",
+    "encoder": "ettv",
     "episode": 3,
+    "group": "LOL",
     "quality": "HDTV",
     "season": 1,
     "title": "The Flash",
@@ -195,7 +220,9 @@
   },
   {
     "codec": "x264",
+    "encoder": "ettv",
     "episode": 1,
+    "group": "LOL",
     "quality": "HDTV",
     "season": 1,
     "title": "The Flash",
@@ -214,11 +241,13 @@
     "year": 2014
   },
   {
+    "group": "unknown_release_type",
     "title": "Teenage Mutant Ninja Turtles",
     "year": 2014
   },
   {
     "codec": "x264",
+    "encoder": "eztv",
     "episode": 5,
     "proper": true,
     "quality": "HDTV",
@@ -227,6 +256,7 @@
   },
   {
     "codec": "x264",
+    "group": "YIFY",
     "quality": "BrRip",
     "resolution": "720p",
     "title": "2047 - Sights of Death",
@@ -244,6 +274,7 @@
   {
     "audio": "AC3",
     "codec": "XviD",
+    "group": "MiLLENiUM",
     "quality": "WEBrip",
     "title": "Dinosaur 13",
     "year": 2014
@@ -251,6 +282,7 @@
   {
     "audio": "MP3",
     "codec": "XviD",
+    "group": "RARBG",
     "quality": "HDRip",
     "title": "Teenage Mutant Ninja Turtles",
     "year": 2014
@@ -258,6 +290,7 @@
   {
     "audio": "DD51",
     "codec": "H264",
+    "group": "RARBG",
     "quality": "WEB-DL",
     "resolution": "1080p",
     "title": "Dawn Of The Planet of The Apes",
@@ -266,6 +299,7 @@
   {
     "audio": "AC3.5.1",
     "codec": "x264",
+    "group": "RARBG",
     "quality": "HDRip",
     "resolution": "720p",
     "title": "Teenage Mutant Ninja Turtles",
@@ -283,6 +317,7 @@
   {
     "audio": "AAC2.0",
     "codec": "H264",
+    "group": "RARBG",
     "quality": "WEB-DL",
     "resolution": "1080p",
     "title": "Into The Storm",
@@ -298,6 +333,7 @@
   {
     "audio": "DTS",
     "codec": "x264",
+    "group": "JYK",
     "quality": "BRRip",
     "resolution": "1080p",
     "title": "Into The Storm",
@@ -305,6 +341,7 @@
   },
   {
     "codec": "x264",
+    "group": "SPARKS",
     "quality": "BluRay",
     "resolution": "1080p",
     "title": "Sin City A Dame to Kill For",
@@ -312,6 +349,7 @@
   },
   {
     "codec": "x264",
+    "group": "Sir Paul",
     "quality": "HDTV",
     "title": "WWE Monday Night Raw 3rd Nov",
     "year": 2014
@@ -324,6 +362,7 @@
   },
   {
     "codec": "x264",
+    "group": "SNHD",
     "quality": "HDTV",
     "title": "WWE Hell in a Cell",
     "year": 2014
@@ -331,12 +370,14 @@
   {
     "audio": "AC3",
     "codec": "XViD",
+    "group": "SiMPLE",
     "quality": "TS",
     "title": "Dracula Untold",
     "year": 2014
   },
   {
     "codec": "x264",
+    "encoder": "eztv",
     "episode": 1,
     "episodeName": "Pilot",
     "quality": "HDTV",
@@ -366,6 +407,7 @@
   },
   {
     "codec": "XViD",
+    "group": "ViCKY",
     "quality": "DVDRip",
     "title": "One Shot",
     "year": 2014
@@ -373,6 +415,7 @@
   {
     "audio": "AAC",
     "codec": "x264",
+    "group": "Hon3y",
     "language": "Hindi",
     "quality": "DvDScr",
     "title": "The Shaukeens",
@@ -380,6 +423,7 @@
   },
   {
     "codec": "x264",
+    "encoder": "DDR",
     "quality": "DvDScr",
     "title": "The Shaukeens",
     "year": 2014
@@ -387,6 +431,7 @@
   {
     "audio": "AAC.2.0",
     "codec": "x264",
+    "group": "RARBG",
     "hardcoded": true,
     "proper": true,
     "quality": "WEBRip",
@@ -397,6 +442,7 @@
   {
     "audio": "AAC",
     "codec": "x264",
+    "group": "CPG",
     "language": "ENG",
     "quality": "CAM",
     "title": "Interstellar",
@@ -420,10 +466,13 @@
   },
   {
     "codec": "x264",
+    "group": "RKOFAN1990 -={SPARR",
     "quality": "PDTV",
     "title": "WWE Monday Night Raw",
     "widescreen": true,
-    "year": 2014
+    "year": 2014,
+    "month": 11,
+    "day": 10
   },
   {
     "episode": 3,
@@ -444,6 +493,7 @@
   {
     "codec": "x264",
     "episode": 1,
+    "group": "reward",
     "quality": "bluray",
     "resolution": "720p",
     "season": 1,
@@ -458,6 +508,7 @@
   {
     "codec": "x264",
     "episode": 10,
+    "group": "GAnGSteR",
     "quality": "BluRay",
     "resolution": "480p",
     "season": 5,
@@ -476,6 +527,7 @@
   },
   {
     "episode": 20,
+    "group": "Kybik.v.Kybe",
     "language": ["rus","eng"],
     "resolution": "720p",
     "season": 2,
@@ -485,6 +537,7 @@
     "3d": true,
     "audio": "AAC",
     "codec": "x264",
+    "group": "ETRG",
     "quality": "BRRip",
     "resolution": "1080p",
     "sbs": "SBS",
@@ -495,6 +548,7 @@
     "3d": true,
     "audio": "AAC",
     "codec": "x264",
+    "group": "m2g",
     "quality": "BRRip",
     "resolution": "1080p",
     "sbs": "Half-SBS",
@@ -504,6 +558,7 @@
   {
     "audio": "AC3",
     "codec": "X264",
+    "group": "TiTAN",
     "quality": "HDRIP",
     "readnfo": true,
     "resolution": "720p",
@@ -513,11 +568,13 @@
   {
     "codec": "x264",
     "encoder": "PRiME",
+    "group": "W4F",
     "quality": "BDRip",
     "title": "Red Sonja Queen Of Plagues",
     "year": 2016
   },
   {
+    "group": "ShAaNi",
     "hardcoded": true,
     "quality": "HDRiP",
     "resolution": "720p",
@@ -526,6 +583,7 @@
     "year": 2016
   },
   {
+    "group": "NBY",
     "quality": "HDTS",
     "size": "600MB",
     "title": "War Dogs",
@@ -533,6 +591,7 @@
   },
   {
     "codec": "x265",
+    "group": "ShAaN",
     "quality": "BluRay",
     "resolution": "720p",
     "size": "999MB",
@@ -542,6 +601,7 @@
   {
     "audio": "AAC",
     "codec": "x264",
+    "group": "ETRG",
     "quality": "BRRip",
     "resolution": "720p",
     "title": "The Boss",
@@ -560,6 +620,7 @@
   {
     "audio": "AC3 - 5.1",
     "codec": "x264",
+    "group": "M2Tv",
     "language": "Hindi",
     "resolution": "720p",
     "title": "Akira",
@@ -568,6 +629,7 @@
   {
     "audio": "AC3",
     "codec": "x264",
+    "group": "MAXPRO",
     "quality": "TELESYNC",
     "title": "Ben Hur",
     "year": 2016
@@ -575,6 +637,7 @@
   {
     "audio": "AAC-LC",
     "codec": "x264",
+    "group": "LEGi0N",
     "quality": "HDRiP",
     "title": "The Secret Life of Pets",
     "year": 2016
@@ -590,6 +653,7 @@
   },
   {
     "codec": "x265",
+    "group": "HEVC",
     "quality": "BluRay",
     "resolution": "1080p",
     "season": [1,2,3],
@@ -640,6 +704,7 @@
   },
   {
     "codec": "x264",
+    "encoder": "i_c",
     "quality": "AMZN WEB-DL",
     "resolution": "720p",
     "season": 23,
@@ -655,6 +720,7 @@
   {
     "codec": "XviD",
     "group": "Rezar1337",
+    "language": "SWEDiSH",
     "quality": "DVDRip",
     "season": 2,
     "title": "Bumbibjornarna"
@@ -662,6 +728,7 @@
   {
     "audio": "AAC2",
     "codec": "x264",
+    "group": "FGT",
     "quality": "HDRip",
     "resolution": "540p",
     "title": "The Martian",
@@ -677,6 +744,7 @@
   {
     "audio": "AAC",
     "codec": "H264",
+    "group": "RARBG",
     "quality": "BluRay",
     "resolution": "1080p",
     "title": "The Legend of 1900",
@@ -684,6 +752,7 @@
   },
   {
     "codec": "x264",
+    "group": "MANNEKEPiS",
     "internal": true,
     "quality": "BluRay",
     "resolution": "1080p",
@@ -701,6 +770,7 @@
   {
     "audio": "AAC5.1",
     "codec": "X264",
+    "group": "Rapta",
     "language": "Polish",
     "quality": "NF WEB-DL",
     "resolution": "1080p",
@@ -726,6 +796,7 @@
   },
   {
     "codec": "x264",
+    "group": "KatmovieHD.Pw",
     "quality": "CAM-Rip",
     "subtitles": "English Subs",
     "title": "Dragon Ball Super: Broly",
@@ -733,6 +804,7 @@
   },
   {
     "codec": "x264",
+    "group": "HDWebmovies",
     "hardcoded": true,
     "language": "English",
     "quality": "HDRip",
@@ -744,6 +816,7 @@
   {
     "audio": "AAC",
     "codec": "x264",
+    "group": "Mp4Ba",
     "hardcoded": true,
     "language": "Mandarin",
     "quality": "HDRip",
@@ -758,6 +831,7 @@
   },
   {
     "language": ["ITA","ENG"],
+    "group": "Village",
     "quality": "DVDrip",
     "season": 1,
     "title": "The Simpsons"
@@ -771,6 +845,8 @@
   {
     "codec": "x264",
     "day": 2,
+    "encoder": "TGx",
+    "group": "SORNY",
     "month": 4,
     "quality": "HDTV",
     "title": "Stephen Colbert",
@@ -780,6 +856,8 @@
     "codec": "x264",
     "container": "mkv",
     "day": 1,
+    "encoder": "eztv",
+    "group": "SORNY",
     "month": 8,
     "quality": "HDTV",
     "resolution": "720p",
@@ -788,6 +866,8 @@
   },
   {
     "codec": "x264",
+    "encoder": "TGx",
+    "group": "GalaxyTV",
     "quality": "AMZN.WEBRip",
     "resolution": "720p",
     "season": 2,
@@ -795,6 +875,7 @@
   },
   {
     "codec": "x264",
+    "group": "xRG",
     "language": "Hindi",
     "resolution": "720p",
     "season": 1,
@@ -804,6 +885,7 @@
   },
   {
     "codec": "X264",
+    "group": "MRSK",
     "quality": "HDTV",
     "resolution": "720p",
     "season": [1,2,3,4],
@@ -813,6 +895,7 @@
     "audio": "EAC3 5.1",
     "bitDepth": "10bit",
     "codec": "x265",
+    "encoder": "TAoE",
     "quality": "ATVP Webrip",
     "resolution": "1080p",
     "season": 1,
@@ -821,7 +904,9 @@
   },
   {
     "codec": "x264",
+    "encoder": "TGx",
     "episode": 3,
+    "group": "RiVER",
     "quality": "HDTV",
     "season": 5,
     "title": "Our Girl"
@@ -829,6 +914,7 @@
   {
     "codec": "x264",
     "episode": 4,
+    "group": "ZMNT",
     "resolution": "480p",
     "season": 2,
     "title": "Roswell New Mexico"
@@ -847,6 +933,7 @@
   {
     "audio": "DD5.1",
     "codec": "H264",
+    "group": "MeM",
     "episode": [5,6],
     "language": ["ITA","ENG"],
     "quality": "AMZN.WEB-DLMux",
@@ -858,6 +945,7 @@
     "audio": "EAC3 2.0",
     "bitDepth": "10bit",
     "codec": "x265",
+    "encoder": "QxR",
     "quality": "AMZN WEB-DL",
     "resolution": "576p",
     "season": [1,2,3,4,5,6,7,8,9,10],
@@ -868,6 +956,7 @@
     "codec": "H264",
     "encoder": "TGx",
     "episode": 16,
+    "group": "iNSiDiOUS",
     "quality": "WEB",
     "season": 6,
     "title": "Empire",
@@ -875,7 +964,9 @@
   },
   {
     "codec": "XviD",
+    "encoder": "TGx",
     "episode": 20,
+    "group": "AFG",
     "season": 1,
     "title": "Mixed-ish"
   },
