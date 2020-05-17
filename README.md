@@ -60,17 +60,10 @@ poetry install
 
 ## Running the tests
 
-To run our project tests you can use `poetry`:
+To run our project tests you can use `pytest` with coverage:
 
 ```
-poetry run pytest
-```
-
-
-And if you want to run `pytest` with coverage:
-
-```
-poetry run pytest --cov . -n 2
+BOILERPLATE_ENV=test PYTHONPATH=. pytest tests/ --cov torrent_name_analyzer/
 ```
 
 ## Docker
