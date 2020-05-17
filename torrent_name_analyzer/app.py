@@ -8,22 +8,18 @@ Run the app with one of these commands:
 import datetime
 import connexion
 import logging
+import os
 
 from flask import render_template
-from pathlib import Path
 
+from torrent_name_analyzer.config import (
+    config_by_name, DEFAULT_HOST, DEFAULT_PORT,
+)
 from torrent_name_analyzer import orm
-from torrent_name_analyzer.name_parser import get_parsed_data
+from torrent_name_analyzer.utils import get_parsed_data
 
-
-logging.basicConfig(level=logging.INFO)
-
-
-DEFAULT_HOST = "127.0.0.1"
-DEFAULT_PORT = 5000
-
-DB_DIRECTORY = Path(Path(__file__).parent, "db-data")
-DB_FILE = Path(DB_DIRECTORY, "torrents.db")
+logging.basicConfig(level=logging.WARNING)
+log = logging.getLogger()
 
 TORRENT_EXIST_IN_DB_MESSAGE = (
     "Torrent `{torrent_name}` already exists in database, "
@@ -33,6 +29,12 @@ TORRENT_NOT_EXIST_IN_DB_MESSAGE = (
     "Torrent `{torrent_name}` doesnt exists in database,"
     "please use `POST` method to create it."
 )
+
+config_env = os.getenv("BOILERPLATE_ENV") or "dev"
+log.info(f"Using configuration: {config_env}")
+
+# Start database session
+db_session = orm.init_db(config_env)
 
 
 def get_timestamp():
@@ -113,34 +115,31 @@ def remove_torrent(torrent_id):
         return connexion.NoContent, 404
 
 
-# make sure that we have database directory
-DB_DIRECTORY.mkdir(parents=True, exist_ok=True)
-db_session = orm.init_db(f"sqlite:///{DB_FILE}")
-# initialize Flask app
-app = connexion.FlaskApp(__name__, specification_dir="swagger/")
-app.add_api("swagger.yaml")
-application = app.app
+def create_app(config_name):
+    config_cls = config_by_name[config_name]
+    # initialize Flask app
+    connexion_app = connexion.FlaskApp(__name__, specification_dir="swagger/")
+    # Configure flask app
+    flask_app = connexion_app.app
+    flask_app.config.from_object(config_cls)
+    # Add api
+    connexion_app.add_api("swagger.yaml")
 
+    @flask_app.teardown_appcontext
+    def shutdown_session(exception=None):
+        db_session.remove()
 
-@application.teardown_appcontext
-def shutdown_session(exception=None):
-    db_session.remove()
+    # Create a URL route in our application for "/"
+    @connexion_app.route("/")
+    def home():
+        """
+        This function just responds to the browser ULR `localhost:5000/`
+        """
+        return render_template("home.html")
 
-
-# Create a URL route in our application for "/"
-@app.route('/')
-def home():
-    """
-    This function just responds to the browser ULR `localhost:5000/`
-    :return:        the rendered template 'home.html'
-    """
-    return render_template('home.html')
+    return connexion_app
 
 
 if __name__ == "__main__":
-    app.run(
-        host=DEFAULT_HOST,
-        port=DEFAULT_PORT,
-        use_reloader=True,
-        threaded=False if ":memory:" in str(DB_FILE) else True,
-    )
+    app = create_app(config_env)
+    app.run(host=DEFAULT_HOST, port=DEFAULT_PORT, use_reloader=True)

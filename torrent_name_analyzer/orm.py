@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from sqlalchemy import (
     Column,
     DateTime,
@@ -7,6 +9,8 @@ from sqlalchemy import (
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
+
+from torrent_name_analyzer.config import config_by_name
 
 Base = declarative_base()
 
@@ -53,8 +57,10 @@ class Torrent(Base):
         )
 
 
-def init_db(uri):
-    engine = create_engine(uri, convert_unicode=True)
+def init_db(config_name):
+    uri = config_by_name[config_name].SQLALCHEMY_DATABASE_URI
+
+    engine = create_engine(uri)
     db_session = scoped_session(
         sessionmaker(autocommit=False, autoflush=False, bind=engine)
     )
