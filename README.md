@@ -1,5 +1,7 @@
 # torrent-name-analyzer
 
+![CI](https://github.com/opacam/torrent-name-analyzer/workflows/CI/badge.svg?branch=develop)
+
 A REST api to extract all possible media information from a torrent
 filename.
 
