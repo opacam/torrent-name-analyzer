@@ -60,6 +60,12 @@ class Torrent(Base):
 def init_db(config_name):
     uri = config_by_name[config_name].SQLALCHEMY_DATABASE_URI
 
+    # make sure that we start our test with a clean database
+    if config_name == "test":
+        db_file = Path(uri.split("///")[1])
+        if db_file.is_file():
+            db_file.unlink()
+
     engine = create_engine(uri)
     db_session = scoped_session(
         sessionmaker(autocommit=False, autoflush=False, bind=engine)
