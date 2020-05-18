@@ -11,9 +11,7 @@ LABEL Author="Pol Canelles"
 LABEL E-mail="canellestudi@gmail.com"
 LABEL version="1.0"
 
-ENV FLASK_APP=torrent_name_analyzer.app
-ENV FLASK_ENV=development
-ENV FLASK_DEBUG=1
+ENV BOILERPLATE_ENV=prod
 
 # First we install the dependencies from requirements.txt
 WORKDIR /tmp
@@ -27,4 +25,4 @@ RUN pip install .
 
 EXPOSE 5000
 
-ENTRYPOINT ["flask", "run", "--host", "0.0.0.0", "--port", "5000"]
+CMD gunicorn --worker-class gevent --workers 8 --bind 0.0.0.0:5000 torrent_name_analyzer.wsgi:app --max-requests 10000 --timeout 5 --keep-alive 5 --log-level info
