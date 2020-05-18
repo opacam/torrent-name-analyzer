@@ -29,6 +29,15 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest tests/ --cov torrent_name_analyzer/
+        pytest tests/ --cov torrent_name_analyzer/ --cov-report=xml
       env:
         BOILERPLATE_ENV: test
+    # The following step will only be run for python 3.8
+    - name: Upload coverage to Codecov
+      if: matrix.python-version == '3.8'
+      uses: codecov/codecov-action@v1.0.7
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
+        file: ./coverage.xml
+        flags: unittest
+        name: torrent-name-analyzer
