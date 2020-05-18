@@ -18,11 +18,13 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    FLASK_ENV = "development"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class TestingConfig(Config):
     DEBUG = True
+    FLASK_ENV = "development"
     TESTING = True
     SQLALCHEMY_DATABASE_URI = (
         f"sqlite:///{Path(DB_DIRECTORY, 'torrents_test.db')}"
@@ -33,6 +35,7 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = False
+    FLASK_ENV = "production"
 
 
 config_by_name = {
