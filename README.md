@@ -110,7 +110,55 @@ command:
 docker run --rm -v <absolute-path-to-db-data>:/app/torrent_name_analyzer/db-data torrent-name-analyzer
 ```
 
-## Deployment with heroku
+## Deploy Application Locally
+
+You can deploy application locally using multiple configurations, but
+if you want the production mode, we recommend to use a wsgi server, we
+make use of `gunicorn` for such purpose, so to run it from the root
+of the project use:
+
+```
+BOILERPLATE_ENV=prod gunicorn --bind 0.0.0.0:5000 torrent_name_analyzer.wsgi:app
+```
+
+For developing purposes (don't recommend this method in a production
+environment), you can use the flask wsgi integrated server:
+
+```
+PYTHONPATH=. ./torrent_name_analyzer/app.py
+```
+
+Just noting that if you don't set `BOILERPLATE_ENV` environment variable
+it will default to `dev`.
+
+Here you have all supported configurations:
+
+- dev: To be used when developing
+- test: to perform the tests
+- prod: to use in a production environment
+
+### List of endpoints:
+
+Endpoint to get the web site:
+
+```
+http://localhost:5000/
+```
+
+Endpoint to get the json response for all stored torrents:
+
+```
+http://localhost:5000/v1/torrents
+```
+
+Endpoint to to the swagger documentation, where you can check all the
+supported endpoints:
+
+```
+http://localhost:5000/v1/ui/
+```
+
+## Deploy Application on Heroku
 
 First of all we will use some services:
   - Install heroku app, after creating an [heroku account](https://signup.heroku.com/):
@@ -118,11 +166,8 @@ First of all we will use some services:
     ```
     curl https://cli-assets.heroku.com/install.sh | sh
     ```
-  - You also will need a [semaphore account](https://semaphoreci.com/)
 
-Now we can proceed to our deployment, we will use master branch as the
-deploy branch and develop to do our tests before deploying the app/api
-to production.
+*Under construction*
 
 
 ## Built With
@@ -130,6 +175,7 @@ to production.
 * [Python 3](https://docs.python.org/3/) - The programming language
 * [Flask](https://flask.palletsprojects.com/en/1.1.x/) - A lightweight WSGI web application framework
 * [Connexion](https://connexion.readthedocs.io/en/latest/) - Framework on top of Flask that automagically handles HTTP requests defined using OpenAPI
+* [Gunicorn](https://gunicorn.org/#docs/) - A Python WSGI HTTP Server for UNIX
 * [Poetry](https://python-poetry.org/docs/) - Dependency Management
 
 ## Contributing
