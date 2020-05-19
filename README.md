@@ -191,7 +191,11 @@ see the [tags on this repository](https://github.com/opacam/torrent-name-analyze
 
 ## Authors
 
-* **Pol Canelles** - *Initial work* - [opacam](https://github.com/opacam)
+* **Pol Canelles** - *API work and updates on top of Giorgio's work* - [opacam](https://github.com/opacam)
+* **Giorgio Momigliano** - *Updates on top of Roi's work* - [platelminto](https://github.com/platelminto)
+* **Roi Dayan** - *Updates on top of Divij's work* - [roidayan](https://github.com/roidayan)
+* **Divij Bindlish** - *Initial work made with python* - [divijbindlish](https://github.com/divijbindlish)
+* **Jānis** - *Original idea made with javascript* - [jzjzjzj](https://github.com/jzjzjzj)
 
 See also the list of [contributors](https://github.com/opacam/torrent-name-analyzer/contributors)
 who participated in this project.
