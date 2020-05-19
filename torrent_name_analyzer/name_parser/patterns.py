@@ -55,13 +55,13 @@ patterns = [
     ('repack', 'REPACK'),
     ('container', '(MKV|AVI|MP4)'),
     ('widescreen', 'WS'),
-    ('website', '^(\[ ?([^\]]+?) ?\])'),
-    ('subtitles', '((?:(?:' + langs + '|e-?)[\-\s.]*)*subs?)'),
-    ('language', '((?:(?:' + langs + ')' + delimiters + '*)+)(?!(?:[\-\s.]*(?:'
-     + langs + ')*)+[\-\s.]?subs)'),
+    ('website', r'^(\[ ?([^\]]+?) ?\])'),
+    ('subtitles', r'((?:(?:' + langs + r'|e-?)[\-\s.]*)*subs?)'),
+    ('language', r'((?:(?:' + langs + ')' + delimiters
+     + r'*)+)(?!(?:[\-\s.]*(?:' + langs + r')*)+[\-\s.]?subs)'),
     ('sbs', '(?:Half-)?SBS'),
     ('unrated', 'UNRATED'),
-    ('size', '(\d+(?:\.\d+)?(?:GB|MB))'),
+    ('size', r'(\d+(?:\.\d+)?(?:GB|MB))'),
     ('bitDepth', '(?:8|10)bit'),
     ('3d', '3D'),
     ('internal', 'iNTERNAL'),
