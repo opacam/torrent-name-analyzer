@@ -1,219 +1,213 @@
-# parse-torrent-name
+# torrent-name-analyzer
 
-> Extract media information from torrent-like filename
-
-![Python versions](https://img.shields.io/badge/Python-2.7%2C%203.3-brightgreen.svg?style=flat-square)
-
-Originally based off of [this JavaScript
-library](https://github.com/jzjzjzj/parse-torrent-name).
-
-Extract all possible media information from a filename. Multiple regex 
-rules are applied on the filename, each of which extracts appropriate
-information. If a rule matches, the corresponding part
-is removed from the filename. Finally, what remains is taken as the
-title of the content.
-
-### Updates on top of [/u/roidayan's work](https://github.com/roidayan/parse-torrent-name/tree/updates)
-
-- Added multi-language support.
-- Added multi-episode support.
-- Added various fields (see field list below).
-- Added proper subtitle support.
-- Added proper support for matching episode names.
-- Added support for full `YYYY-MM-DD`-type dates, usually useful for daily shows that otherwise have no episode name.
-- Added support for 2020s release years.
-- Added exceptions list for media with known, non-fixable issues.
-- Expanded and improved matching for various fields.
-- Fixed incorrect parsing of titles containing years.
-- Added more tests and cleaned up previous ones.
+[![CI](https://github.com/opacam/torrent-name-analyzer/workflows/CI/badge.svg?branch=develop)](https://github.com/opacam/torrent-name-analyzer/actions)
+[![codecov](https://codecov.io/gh/opacam/torrent-name-analyzer/branch/develop/graph/badge.svg?token=C65WnnEqQw)](https://codecov.io/gh/opacam/torrent-name-analyzer)
+[![Python versions](https://img.shields.io/badge/Python-3.6+-brightgreen.svg?style=flat)](https://www.python.org/downloads/)
+[![GitHub release](https://img.shields.io/github/release/opacam/torrent-name-analyzer.svg)](https://gitHub.com/opacam/torrent-name-analyzer/releases/)
+[![GitHub tag](https://img.shields.io/github/tag/opacam/torrent-name-analyzer.svg)](https://gitHub.com/opacam/torrent-name-analyzer/tags/)
+[![GitHub license](https://img.shields.io/github/license/opacam/torrent-name-analyzer.svg)](https://github.com/opacam/torrent-name-analyzer/blob/master/LICENSE)
 
 
-### [/u/roidayan's work](https://github.com/roidayan/parse-torrent-name/tree/updates) on top of [/u/divijbindlish's original python port](https://github.com/divijbindlish/parse-torrent-name)
+A REST api to extract all possible media information from a torrent
+filename.
 
-- Added support for complete season parsing (either just a full season, or a range), not just single episodes.
-- Added to various fields' patterns.
-- Improved season & episode matching.
-- Fixed group names from having the container & bt site name.
-- Added more tests.
+## Getting Started
 
+These instructions will get you a copy of the project up and running on your
+local machine for development and testing purposes. See deployment for notes on
+how to deploy the project on a live system.
 
-## Why?
+### Prerequisites
 
-Online APIs by providers like
-[TMDb](https://www.themoviedb.org/documentation/api),
-[TVDb](http://thetvdb.com/wiki/index.php?title=Programmers_API), and
-[OMDb](http://www.omdbapi.com/) don't react well to
-queries which include any kind of extra information. To get proper results from
-these APIs, only the title of the content should be provided in the search
-query. The accuracy of the results can be
-improved by passing in the year, which can also be extracted using this library.
+You also need python >= 3.6 up and running. If you OS does not have the
+appropriate python version, you could install [pyenv](https://github.com/pyenv/pyenv) 
+and create a virtual environment with the proper python version. Also you will
+need an up to date pip installation (version `20.0.2` or greater is our
+recommendation). So once you have `pyenv` installed
+(see [pyenv install instructions](https://github.com/pyenv/pyenv#installation)), 
+make an virtual environment for the project (we will use python version 3.8):
 
-## Usage
-
-```py
-import PTN
-
-info = PTN.parse('A freakishly cool movie or TV episode')
-
-print(info) # All details that were parsed
+```
+pyenv virtualenv 3.8.1 tna-venv
 ```
 
-PTN works well for both movies and TV seasons & episodes. All meaningful information is
-extracted and returned in a dictionary. Text which couldn't be
-parsed is returned in the `excess` field.
-
-### Movies
-
-```py
-PTN.parse('San Andreas 2015 720p WEB-DL x264 AAC-JYK')
-# {
-#     'group': 'JYK',
-#     'title': 'San Andreas',
-#     'resolution': '720p',
-#     'codec': 'x264',
-#     'year':  2015,
-#     'audio': 'AAC',
-#     'quality': 'WEB-DL'
-# }
-
-PTN.parse('The Martian 2015 540p HDRip KORSUB x264 AAC2 0-FGT')
-# {
-#     'group': '0-FGT',
-#     'title': 'The Martian',
-#     'resolution': '540p',
-#     'excess': 'KORSUB',
-#     'codec': 'x264',
-#     'year': 2015,
-#     'audio': 'AAC2',
-#     'quality': 'HDRip'
-# }
+Enter inside the python environment we recently created (`tna-venv`):
+```
+pyenv activate tna-venv
 ```
 
-### TV episodes 
-
-```py
-PTN.parse('Mr Robot S01E05 HDTV x264-KILLERS[ettv]')
-# {
-#     'episode': 5,
-#     'season': 1,
-#     'title': 'Mr Robot',
-#     'codec': 'x264',
-#     'group':  'KILLERS',
-#     'encoder': 'ettv',
-#     'quality': 'HDTV'
-# }
-
-PTN.parse('friends.s02e01.720p.bluray-sujaidr')
-# {
-#     'episode': 1,
-#     'season': 2,
-#     'title': 'friends',
-#     'resolution': '720p',
-#     'group': 'sujaidr',
-#     'quality': 'bluray'    
-# }
+Upgrade `pip` package:
+```
+pip install --upgrade pip
 ```
 
-### TV seasons
-
-```py
-PTN.parse('South Park Season 23 Complete 720p AMZN WEB-DL x264 [i_c]')
-# {
-#     'title': 'South Park',
-#     'season': 23,
-#     'resolution': '720p',
-#     'codec': 'x264',
-#     'quality': 'AMZN WEB-DL',
-#     'encoder': 'i_c',
-#     'excess': 'Complete'
-# }
-
-  
-PTN.parse('The.X-Files.Complete.S01-S09.1080p.BluRay.x264-GECKOS')
-# {
-#     'season': [1, 2, 3, 4, 5, 6, 7, 8, 9],
-#     'title': 'The X-Files',
-#     'resolution': '1080p',
-#     'quality': 'BluRay',
-#     'codec': 'x264',
-#     'group': 'GECKOS'
-# }
+Install `poetry` package:
+```
+pip install poetry
 ```
 
-### Note
+### Installing
 
-PTN does not guarantee the fields `group`, `excess`, and `episodeName`, as these 
-fields might be interchanged with each other. This shoudn't affect most 
-applications since episode names can be fetched from an online database 
-after correctly getting the season and episode number.
+Once you have the prerequisites installed, you can proceed installing the
+project. The project uses an `pyproject.toml` file to manage the installation
+(PEP517) and also we will make use of the python package
+[poetry](https://github.com/python-poetry/poetry) as our `build-system`
+(PEP518). So, to do the install you only need to `cd` to the
+project folder:
 
-### Parts extracted
-
-* audio
-* bitDepth
-* codec
-* container
-* day
-* encoder
-* episode
-* episodeName
-* excess
-* extended
-* group
-* hardcoded
-* internal
-* language
-* month
-* proper
-* quality
-* readnfo
-* region
-* repack
-* resolution
-* sbs
-* season
-* size
-* subtitles
-* title
-* unrated
-* website
-* widescreen
-* year
-* 3d
-
-## Install
-
-### Automatic
-
-PTN can be installed automatically using `pip`.
-
-```sh
-$ pip install git+git://github.com/platelminto/parse-torrent-name.git@master
+```
+cd torrent-name-analyzer
 ```
 
-Note that you might require `sudo` permission depending on whether
-a virtual environment is used or not.
+And run the install of the dependencies via `poetry` command:
 
-### Manual
-
-First clone the repository.
-
-```sh
-$ git clone https://github.com/platelminto/parse-torrent-name PTN && cd PTN
+```
+poetry install
 ```
 
-And run the command for installing the package.
 
-```sh
-$ python setup.py install
+## Running the tests
+
+To run our project tests you can use `pytest` with coverage:
+
 ```
+BOILERPLATE_ENV=test PYTHONPATH=. pytest tests/ --cov torrent_name_analyzer/
+```
+
+## Docker
+
+This project can be used via docker, the following sections describes
+the build/run instructions.
+
+### Build image
+
+You can build the docker image with the command:
+
+```
+docker build -t torrent-name-analyzer:latest .
+```
+
+---
+**TIP**
+
+To update requirements.txt file you can use:
+
+```
+poetry export -f requirements.txt -o requirements.txt
+```
+
+---
+
+## Run image
+
+To run the image without persistent database changes, use command:
+
+```
+docker run --rm torrent-name-analyzer
+```
+
+To run the image with persistent database changes, you can mount a
+volume inside docker image pointing to host's database folder with
+command:
+
+```
+docker run --rm -v <absolute-path-to-db-data>:/app/torrent_name_analyzer/db-data torrent-name-analyzer
+```
+
+## Deploy Application Locally
+
+You can deploy application locally using multiple configurations, but
+if you want the production mode, we recommend to use a wsgi server, we
+make use of `gunicorn` for such purpose, so to run it from the root
+of the project use:
+
+```
+BOILERPLATE_ENV=prod gunicorn --bind 0.0.0.0:5000 torrent_name_analyzer.wsgi:app
+```
+
+For developing purposes (don't recommend this method in a production
+environment), you can use the flask wsgi integrated server:
+
+```
+PYTHONPATH=. ./torrent_name_analyzer/app.py
+```
+
+Just noting that if you don't set `BOILERPLATE_ENV` environment variable
+it will default to `dev`.
+
+Here you have all supported configurations:
+
+- dev: To be used when developing
+- test: to perform the tests
+- prod: to use in a production environment
+
+### List of endpoints:
+
+Endpoint to get the web site:
+
+```
+http://localhost:5000/
+```
+
+Endpoint to get the json response for all stored torrents:
+
+```
+http://localhost:5000/v1/torrents
+```
+
+Endpoint to to the swagger documentation, where you can check all the
+supported endpoints:
+
+```
+http://localhost:5000/v1/ui/
+```
+
+## Deploy Application on Heroku
+
+First of all we will use some services:
+  - Install heroku app, after creating an [heroku account](https://signup.heroku.com/):
+
+    ```
+    curl https://cli-assets.heroku.com/install.sh | sh
+    ```
+
+*Under construction*
+
+
+## Built With
+
+* [Python 3](https://docs.python.org/3/) - The programming language
+* [Flask](https://flask.palletsprojects.com/en/1.1.x/) - A lightweight WSGI web application framework
+* [Connexion](https://connexion.readthedocs.io/en/latest/) - Framework on top of Flask that automagically handles HTTP requests defined using OpenAPI
+* [Gunicorn](https://gunicorn.org/#docs/) - A Python WSGI HTTP Server for UNIX
+* [Poetry](https://python-poetry.org/docs/) - Dependency Management
 
 ## Contributing
 
-Submit a PR, including tests (if applicable) for what you've added. Please provide input torrent names in `tests/files/input.json` and output json objects in `tests/files/output.json` (where the non-guaranteed fields `group`, `excess`, and `episodeName` don't have to be included).
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of
+conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [CalVer](https://calver.org/) for versioning. For the versions available,
+see the [tags on this repository](https://github.com/opacam/torrent-name-analyzer/tags).
+
+
+## Authors
+
+* **Pol Canelles** - *API work and updates on top of Giorgio's work* - [opacam](https://github.com/opacam)
+* **Giorgio Momigliano** - *Updates on top of Roi's work* - [platelminto](https://github.com/platelminto)
+* **Roi Dayan** - *Updates on top of Divij's work* - [roidayan](https://github.com/roidayan)
+* **Divij Bindlish** - *Initial work made with python* - [divijbindlish](https://github.com/divijbindlish)
+* **Jānis** - *Original idea made with javascript* - [jzjzjzj](https://github.com/jzjzjzj)
+
+See also the list of [contributors](https://github.com/opacam/torrent-name-analyzer/contributors)
+who participated in this project.
 
 ## License
 
-MIT © 2015-2017 [Divij Bindlish](http://divijbindlish.in)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-MIT © 2020 [Giorgio Momigliano](https://github.com/platelminto)
+## Acknowledgments
+
+* [Template for README.md](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
