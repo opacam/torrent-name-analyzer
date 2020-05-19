@@ -1,7 +1,11 @@
 # torrent-name-analyzer
 
-![CI](https://github.com/opacam/torrent-name-analyzer/workflows/CI/badge.svg?branch=develop)
+[![CI](https://github.com/opacam/torrent-name-analyzer/workflows/CI/badge.svg?branch=develop)](https://github.com/opacam/torrent-name-analyzer/actions)
 [![codecov](https://codecov.io/gh/opacam/torrent-name-analyzer/branch/develop/graph/badge.svg?token=C65WnnEqQw)](https://codecov.io/gh/opacam/torrent-name-analyzer)
+[![Python versions](https://img.shields.io/badge/Python-3.6+-brightgreen.svg?style=flat)](https://www.python.org/downloads/)
+[![GitHub release](https://img.shields.io/github/release/opacam/torrent-name-analyzer.svg)](https://gitHub.com/opacam/torrent-name-analyzer/releases/)
+[![GitHub tag](https://img.shields.io/github/tag/opacam/torrent-name-analyzer.svg)](https://gitHub.com/opacam/torrent-name-analyzer/tags/)
+[![GitHub license](https://img.shields.io/github/license/opacam/torrent-name-analyzer.svg)](https://github.com/opacam/torrent-name-analyzer/blob/master/LICENSE)
 
 
 A REST api to extract all possible media information from a torrent
