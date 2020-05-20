@@ -7,6 +7,22 @@ readme = "README.md"
 homepage = "https://github.com/opacam/torrent-name-analyzer/"
 repository = "https://github.com/opacam/torrent-name-analyzer/"
 keywords = ["flask", "REST API", "docker"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Flask",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Internet :: WWW/HTTP :: WSGI",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Server",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Utilities"
+]
 authors = ["opacam <canellestudi@gmail.com>"]
 maintainers = ["opacam <canellestudi@gmail.com>"]
 
