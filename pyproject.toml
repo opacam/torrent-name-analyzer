@@ -1,8 +1,14 @@
 [tool.poetry]
 name = "torrent-name-analyzer"
-version = "2020.05.03"
+version = "2020.05.19"
 description = "REST api to extract all possible media information from a torrent filename."
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/opacam/torrent-name-analyzer/"
+repository = "https://github.com/opacam/torrent-name-analyzer/"
+keywords = ["flask", "REST API", "docker"]
 authors = ["opacam <canellestudi@gmail.com>"]
+maintainers = ["opacam <canellestudi@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
