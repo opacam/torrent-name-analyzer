@@ -5,7 +5,7 @@
 [![Python versions](https://img.shields.io/badge/Python-3.6+-brightgreen.svg?style=flat)](https://www.python.org/downloads/)
 [![GitHub release](https://img.shields.io/github/release/opacam/torrent-name-analyzer.svg)](https://gitHub.com/opacam/torrent-name-analyzer/releases/)
 [![GitHub tag](https://img.shields.io/github/tag/opacam/torrent-name-analyzer.svg)](https://gitHub.com/opacam/torrent-name-analyzer/tags/)
-[![GitHub license](https://img.shields.io/github/license/opacam/torrent-name-analyzer.svg)](https://github.com/opacam/torrent-name-analyzer/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/opacam/torrent-name-analyzer.svg)](https://github.com/opacam/torrent-name-analyzer/blob/master/LICENSE.md)
 
 
 A REST api to extract all possible media information from a torrent
