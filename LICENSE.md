@@ -1,7 +1,6 @@
 ## The MIT License (MIT)
 
-#### Copyright (c) 2020 Giorgio Momigliano & Pol Canelles
-#### Copyright (c) 2015-2017 Divij Bindlish <dvjbndlsh93@gmail.com> (divijbindlish.com)
+#### Copyright (c) 2015 Divij Bindlish, Giorgio Momigliano & Pol Canelles
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
