@@ -42,7 +42,11 @@ paths:
         - $ref: '#/components/parameters/torrent_id'
       responses:
         '200':
-          description: OK
+          description: |
+            We find the requested *torrent_id* and we return the proper data.
+
+            **Note:** The returned result will only contain the keys which has
+            values.
           content:
             application/json:
               schema:
@@ -75,7 +79,11 @@ paths:
         - $ref: '#/components/parameters/torrent_name'
       responses:
         '200':
-          description: OK
+          description: |
+            We find the requested *torrent_name* and we return the proper data.
+
+            **Note:** The returned result will only contain the keys which has
+            values.
         '400':
           description: The specified filename is invalid (not a string).
         '404':

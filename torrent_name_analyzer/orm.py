@@ -52,9 +52,14 @@ class Torrent(Base):
                 setattr(self, key, kwargs[key])
 
     def dump(self):
-        return dict(
-            [(k, v) for k, v in vars(self).items() if not k.startswith("_")]
-        )
+        data = {}
+        for k, v in vars(self).items():
+            if k.startswith("_"):
+                continue
+            if v is None:
+                continue
+            data[k] = v
+        return data
 
 
 def init_db(config_name):
