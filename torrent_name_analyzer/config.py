@@ -1,12 +1,17 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 5000
 
 BASEDIR = Path(Path(__file__).parent)
 DB_DIRECTORY = Path(BASEDIR, "db-data")
 DB_DIRECTORY.mkdir(parents=True, exist_ok=True)
+
+ENV_PATH = Path(BASEDIR, '.env')
+load_dotenv(dotenv_path=ENV_PATH, verbose=False)
 
 
 class Config:
