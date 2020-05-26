@@ -6,6 +6,7 @@
 
 **General:**
 
+- Enable loading of `.env` file via `python-dotenv`
 - Add more information to `pyproject.toml`
 - Add project files: `CONTRIBUTING.md` & CHANGELOG.md
 
