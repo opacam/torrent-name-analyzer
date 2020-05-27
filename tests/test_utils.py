@@ -72,8 +72,8 @@ def test_get_parsed_data(torrent_name, expected_data):
         excess = parsed_torrent.pop("excess")
         assert len(excess) > 0
 
-    # remove excess (since we don't have it in our test data sets)
-    # ...and make sure that we have something in it
+    # check rip properties , because we make a string from dict keys,
+    # so the order of the elements could be different
     if "rip_properties" in parsed_torrent:
         rip_properties = parsed_torrent.pop("rip_properties")
         expected_rip_properties = expected_data.pop("rip_properties")
