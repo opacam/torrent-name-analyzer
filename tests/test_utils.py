@@ -29,14 +29,15 @@ for data_dict in expected_raw_results:
     if rip_keys:
         data_dict["rip_properties"] = ", ".join(rip_keys)
 
-    # list to values
+    # convert list/integers to strings
     for special_key in utils.SPECIAL_KEYS:
-        if special_key in data_dict and isinstance(
-            data_dict[special_key], list
-        ):
-            data_dict[special_key] = ", ".join(
-                [str(i) for i in data_dict[special_key]]
-            )
+        if special_key not in data_dict:
+            continue
+        value = data_dict[special_key]
+        if special_key in data_dict and isinstance(value, list):
+            data_dict[special_key] = ", ".join([str(i) for i in value])
+        elif special_key in data_dict and isinstance(value, int):
+            data_dict[special_key] = f"{value}"
     expected_results.append(data_dict)
 
 test_torrents = zip(torrents, expected_results)

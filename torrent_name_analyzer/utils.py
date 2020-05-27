@@ -69,18 +69,16 @@ def get_parsed_data(torrent_name: str) -> dict:
     if rip_props:
         parsed_data["rip_properties"] = ", ".join(rip_props)
 
-    # make sure that we store strings for defined special keys,
-    # since our parser returns as some lists
+    # make sure that we get strings for defined special keys,
+    # since our parser returns as some lists or integers
     for key in SPECIAL_KEYS & parsed_keys_set:
-        if isinstance(parsed_torrent[key], list):
-            parsed_data[key] = ", ".join(
-                [str(i) for i in parsed_torrent[key]]
-            )
-            logging.info(
-                f"{key} converted to string list: {parsed_data[key]}"
-            )
+        value = parsed_torrent[key]
+        if isinstance(value, list):
+            parsed_data[key] = ", ".join([str(i) for i in value])
+        elif isinstance(value, int):
+            parsed_data[key] = f"{value}"
         else:
-            parsed_data[key] = parsed_torrent[key]
+            parsed_data[key] = value
 
     # set/update timestamp
     parsed_data["timestamp"] = datetime.datetime.now()
